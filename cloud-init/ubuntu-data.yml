@@ -1,0 +1,28 @@
+#cloud-config
+timezone: Asia/Muscat
+locale: "en_US.UTF-8"
+manage_etc_hosts: true
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+packages:
+  - qemu-guest-agent
+  - net-tools
+
+users:
+  - name: ${vm_username}
+    passwd: ${vm_password}
+    groups: [adm, cdrom, dip, plugdev, lxd, sudo]
+    lock-passwd: false
+    ssh_pwauth: true
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ${vm_sshkey}
+
+power_state:
+  delay: now
+  mode: reboot
+  message: Rebooting after cloud-init completion
+  condition: true
