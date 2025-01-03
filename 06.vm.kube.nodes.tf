@@ -12,7 +12,7 @@ module "kube_cplane" {
   vm_memory_mb           = var.vm_k8s_control_plane["memory"]
   vm_boot_disk_interface = var.vm_k8s_control_plane["boot_disk_interface"]
   vm_boot_disk_size_gb   = var.vm_k8s_control_plane["boot_disk_size"]
-  vm_ip_config           = [{ vm_network_bridge_name = "vmbr1", vm_subnet_cidr = "10.10.10.0/24", vm_host_number = 50 }]
+  vm_ip_config           = [{ vm_network_bridge_name = "vmbr0", vm_subnet_cidr = "192.168.20.0/24", vm_host_number = 40 }]
   vm_startup_order       = 1
   vm_username            = var.vm_username
   vm_password            = var.vm_password
@@ -38,7 +38,7 @@ module "kube_worker" {
   vm_boot_disk_interface = var.vm_k8s_worker["boot_disk_interface"]
   vm_boot_disk_size_gb   = var.vm_k8s_worker["boot_disk_size"]
   vm_boot_storage_id     = var.vm_boot_storage_id
-  vm_ip_config           = [{ vm_network_bridge_name = "vmbr1", vm_subnet_cidr = "10.10.10.0/24", vm_host_number = 60 }]
+  vm_ip_config           = [{ vm_network_bridge_name = "vmbr0", vm_subnet_cidr = "192.168.20.0/24", vm_host_number = 50 }]
   vm_startup_order       = 2
   vm_username            = var.vm_username
   vm_password            = var.vm_password

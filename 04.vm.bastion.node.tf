@@ -2,7 +2,7 @@ module "bastion_node" {
   source                 = "./modules/ubuntu-vm-module"
   node_count             = 1
   vm_name_prefix         = var.use_legacy_naming_convention ? "${var.env_name}-k8s-bnode" : "vm-${local.cluster_name}-bnode"
-  vm_id                  = 400
+  vm_id                  = 430
   pm_host                = var.pm_host
   vm_image_id            = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
   vm_cloud_init_file_id  = proxmox_virtual_environment_file.ubuntu_cloud_init.id
@@ -18,7 +18,7 @@ module "bastion_node" {
   vm_tags                = "${var.env_name};terraform;bastion_node;ramakrishna"
   vm_ip_config = [
     { vm_network_bridge_name = "vmbr0", vm_subnet_cidr = "192.168.20.0/24", vm_host_number = 30 },
-    { vm_network_bridge_name = "vmbr1", vm_subnet_cidr = "10.10.10.0/24", vm_host_number = 10 }
+    #{ vm_network_bridge_name = "vmbr1", vm_subnet_cidr = "10.10.10.0/24", vm_host_number = 10 }
   ]
 }
 

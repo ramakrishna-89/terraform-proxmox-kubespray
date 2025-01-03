@@ -182,3 +182,28 @@ variable "vm_password" {
   description = "The vm login user passowrd (provide cloud-init password hash, default is kube@123)."
 
 }
+
+# Node Configuration
+########################################################
+variable "node_config" {
+  description = "The node module configuration"
+  type = object({
+    node_count             = number
+    vm_name_prefix         = string
+    vm_id                  = number
+    pm_host                = string
+    vm_image_id            = string
+    vm_cloud_init_file_id  = string
+    vm_vcpus               = number
+    vm_memory_mb           = number
+    vm_boot_disk_interface = string
+    vm_boot_disk_size_gb   = number
+    vm_boot_storage_id     = string
+    vm_startup_order       = number
+    vm_username            = string
+    vm_password            = string
+    vm_ssh_public_key_path = string
+    vm_tags                = string
+    vm_ip_config           = list(object({ vm_network_bridge_name = string, vm_subnet_cidr = string, vm_host_number = number }))
+  })
+}
